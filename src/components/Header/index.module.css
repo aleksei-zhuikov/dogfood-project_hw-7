@@ -68,9 +68,9 @@ a {
 
 .userInfoContainer {
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
-	gap: 10px;
-	/* font-size: 1rem; */
-	justify-content: space-between;
+	gap: 5px;
+	align-items: flex-end;
 	margin-top: 10px;
 }

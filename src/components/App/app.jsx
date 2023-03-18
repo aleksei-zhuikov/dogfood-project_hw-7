@@ -39,8 +39,6 @@ function App() {
   const [isAuth, setIsAuth] = useState(false)
 
   const location = useLocation()
-  // const token = localStorage.getItem('token')
-  // console.log('token from app-jsx >>', token)
 
   const backgroundLocation = location.state?.backgroundLocation;
   const initialPath = location.state?.initialPath;
@@ -57,21 +55,6 @@ function App() {
         setIsLoading(false);
       })
   }, [searchQuery])
-
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   Promise.all([api.getProductList(), api.getUserInfo()])
-  //     .then(([productsData, userData]) => {
-  //       setCurrentUser(userData);
-  //       setCards(productsData.products);
-  //       const favoriteProducts = productsData.products.filter(item => isLiked(item.likes, userData._id));
-  //       setFavorites(prevSate => favoriteProducts)
-  //     })
-  //     .catch(err => console.log(err))
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     })
-  // }, [])
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -93,7 +76,6 @@ function App() {
 
   useEffect(() => {
     if (api._token) {
-
       handleRequest()
     }
   }, [debounceSearchQuery])
@@ -148,7 +130,8 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
-      setIsAuth(true)
+      setIsAuth((ps) => !isAuth)
+      // setIsAuth(true)
       navigate('/')
     }
   }, [localStorage.getItem('token')])

@@ -32,7 +32,7 @@ export const Login = () => {
             console.log('SetToken from login-jsx >>', res.token)
             navigate('/')
         } catch (error) {
-            // alert(error);
+
             if (error === 'Ошибка: 401') {
                 alert('Неправильноя почта или пароль')
             } else alert(error);

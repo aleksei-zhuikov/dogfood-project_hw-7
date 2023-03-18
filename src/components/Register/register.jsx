@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import api from "../../utils/api"
 import { EMAIL_REGEXP, PASSWORD_REGEXP, VALIDATE_CONFIG } from "../../utils/contants"
 import Form from "../Form/form"
 import { FormButton } from "../FormButton/form-button"
@@ -11,15 +12,29 @@ export const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" })
     const navigate = useNavigate()
-    
+
     const handleClickLoginButton = (e) => {
         e.preventDefault();
-        navigate('/login', { replace: true, state: {backgroundLocation: location, initialPath}});
+        navigate('/login', { replace: true, state: { backgroundLocation: location, initialPath } });
     }
-    const sendRegisterApi = (data) => {
-        console.log(data);
+
+    const sendRegisterApi = async (data) => {
+        console.log('data >>>>', data)
+
+        try {
+            await api.registerUser({ ...data, group: 'group-10' });
+            navigate('/login')
+
+        } catch (error) {
+            if (error === 'Ошибка: 409') {
+                alert('Пользователь с данным email уже существует')
+            } else alert(error);
+
+        }
+
+        console.log('data from register-jsx', data);
     }
- 
+
     const emailRegister = register('email', {
         required: {
             value: true,
