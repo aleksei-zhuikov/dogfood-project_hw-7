@@ -68,9 +68,50 @@ a {
 
 .userInfoContainer {
 	display: flex;
-	flex-direction: column;
 	flex-wrap: wrap;
-	gap: 5px;
-	align-items: flex-end;
+	gap: 20px;
+	align-items: center;
 	margin-top: 10px;
+	justify-content: flex-end;
+}
+
+.btnHeaderRename {
+
+	background-color: teal;
+	color: antiquewhite;
+	min-width: 100px;
+	word-wrap: break-word;
+	border: none;
+	border-radius: 50px;
+	padding: 7px 12px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.btnHeaderRename:hover {
+	background-color: antiquewhite;
+	color: teal;
+	transition: background-color 0.3s, color 0.3s;
+
+}
+
+.wrapUserInfo {
+	display: flex;
+	gap: 10px;
+}
+
+.btnLogout {
+	border-radius: 10px;
+	cursor: pointer;
+	background-color: #fff;
+	color: #000;
+	transition: background-color 0.3s, color 0.3s;
+
+}
+
+.btnLogout:hover {
+	background-color: #969696;
+	color: rgb(254, 255, 254);
+	transition: background-color 0.3s, color 0.3s;
+
 }

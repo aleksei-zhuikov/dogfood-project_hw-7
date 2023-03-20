@@ -7,17 +7,18 @@ import { FormButton } from "../FormButton/form-button";
 import { FormInput } from "../FormInput/form-input";
 import { Rating } from "../Rating/rating";
 
-export const FormReview = ({title = 'Отзыв о товаре', productId, setProduct}) => {
+export const FormReview = ({ title = 'Отзыв о товаре', productId, setProduct, }) => {
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" })
     const [rating, setRating] = useState(1)
 
     const sendReviewProduct = (data) => {
-        api.createReviewProduct(productId, {...data, rating})
+        console.log('data from review >>', data)
+        api.createReviewProduct(productId, { ...data, rating })
             .then(newProduct => {
                 setProduct && setProduct(newProduct)
             })
     }
- 
+
     const textReview = register('text', {
         required: {
             value: true,
@@ -25,9 +26,10 @@ export const FormReview = ({title = 'Отзыв о товаре', productId, set
         }
     })
 
+
     return (
         <Form title={title} handleFormSubmit={handleSubmit(sendReviewProduct)}>
-            
+
             <Rating rating={rating} isEditable setRating={setRating} />
 
             <FormInput

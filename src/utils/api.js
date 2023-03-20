@@ -101,6 +101,22 @@ class Api {
             body: JSON.stringify(data),
         }).then((res) => onResponse(res))
     }
+
+
+    changeUserName(data) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            headers: {
+                authorization: this._token,
+                "Content-Type": "application/json",
+            },
+            method: 'PATCH',
+            body: JSON.stringify(data),
+
+        }).then((res) => {
+            console.log('res from api change name >>>', res)
+            return onResponse(res)
+        })
+    }
 }
 
 const config = {

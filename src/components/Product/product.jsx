@@ -6,13 +6,13 @@ import quality from './img/quality.svg';
 
 import { calcDiscountPrice, isLiked, createMarkup } from '../../utils/product';
 import { useNavigate } from 'react-router-dom';
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { UserContext } from '../../context/userContext';
 import { ContentHeader } from '../ContentHeader/content-header';
 import { Rating } from '../Rating/rating';
 import { FormReview } from '../FormReview/form-review';
 
-export const Product = ({ onProductLike, pictures, likes = [], reviews, tags, name, price, discount, description, wight, _id, setProduct }) => {
+export const Product = ({ onProductLike, pictures, likes = [], reviews, tags, name, price, discount, description, wight, _id, setProduct, }) => {
 
     const { user: currentUser } = useContext(UserContext);
     // console.log('CurrentUser from Product-jsx >>>', currentUser)
@@ -21,8 +21,20 @@ export const Product = ({ onProductLike, pictures, likes = [], reviews, tags, na
     const discount_price = calcDiscountPrice(price, discount);
     const isLike = isLiked(likes, currentUser?._id);
     const desctiptionHTML = createMarkup(description);
+    const [writeReview, setWriteReview] = useState(false);
 
     const ratingCount = useMemo(() => Math.round(reviews.reduce((acc, r) => acc = acc + r.rating, 0) / reviews.length), [reviews])
+
+    function handleBtnClickReview() {
+        setWriteReview((state) => !writeReview);
+
+        console.log(writeReview)
+    }
+
+    function sendReview() {
+        setWriteReview(false)
+        console.log('>>> works')
+    }
 
     return (
         <>
@@ -102,10 +114,16 @@ export const Product = ({ onProductLike, pictures, likes = [], reviews, tags, na
                 </div>
 
             </div>
+
+            {!writeReview ?
+                (<button className={s.btn_riteRev} onClick={handleBtnClickReview}>Написать отзыв</button>)
+                :
+                (<FormReview title={`Отзыв о товаре ${name}`} productId={_id} setProduct={setProduct} />)
+            }
+
             <ul>
                 {reviews.map(reviewData => <li key={reviewData._id}>{reviewData.text} <Rating rating={reviewData.rating} /></li>)}
             </ul>
-            <FormReview title={`Отзыв о товаре ${name}`} productId={_id} setProduct={setProduct} />
         </>
     )
 }

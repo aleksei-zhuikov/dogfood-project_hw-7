@@ -25,6 +25,7 @@ import { Register } from '../Register/register';
 import { Login } from '../Login/login';
 import { ResetPassword } from '../ResetPassword/reset-password';
 import { NotAuth } from '../NoAuth/NoAuth';
+import { ReNameUser } from '../ReNameUser/re-name-user';
 
 
 function App() {
@@ -181,6 +182,10 @@ function App() {
               <Route path='/reset-password' element={
                 <ResetPassword />
               } />
+              {/* Добавил Переименовать пользователя */}
+              {/* <Route path='/re-name-user' element={
+                <ReNameUser />
+              } /> */}
               <Route path='*' element={<NotFoundPage />} />
             </Routes>
 
@@ -200,6 +205,12 @@ function App() {
                 <Route path='/reset-password' element={
                   <Modal>
                     <ResetPassword />
+                  </Modal>
+                } />
+                {/* Добавил Переименовать пользователя */}
+                <Route path='/re-name-user' element={
+                  <Modal>
+                    <ReNameUser />
                   </Modal>
                 } />
               </Routes>

@@ -184,6 +184,31 @@
 	stroke: red;
 }
 
+
+.btn_riteRev {
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 20px;
+	border-radius: 55px;
+	text-decoration: none;
+	display: inline-block;
+	background-color: #FFE44D;
+	cursor: pointer;
+	padding: 12px 20px;
+	margin-bottom: 30px;
+	word-wrap: break-word;
+	min-width: 160px;
+	transition: background-color, transform .3s;
+}
+
+.btn_riteRev:hover {
+	background-color: #FFAA0D;
+	color: #fd3f1d;
+	transform: scale(1.1)
+}
+
+
+
 @media (max-width: 1000px) {
 	.product {
 		gap: 20px;

@@ -24,10 +24,10 @@ export const Login = () => {
     }
 
     const sendRegisterApi = async (data) => {
-        // console.log('data from app-jsx >>', data)
+        console.log('data from LOGIN app-jsx >>', data)
         try {
             const res = await api.login(data)
-            // console.log('res from login-jsx >>', { res })
+            console.log('RES from LOGIN-jsx >>', { res })
             localStorage.setItem('token', res.token);
             console.log('SetToken from login-jsx >>', res.token)
             navigate('/')
