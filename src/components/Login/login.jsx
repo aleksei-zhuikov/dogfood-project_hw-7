@@ -24,12 +24,12 @@ export const Login = () => {
     }
 
     const sendRegisterApi = async (data) => {
-        console.log('data from LOGIN app-jsx >>', data)
+        // console.log('data from LOGIN app-jsx >>', data)
         try {
             const res = await api.login(data)
-            console.log('RES from LOGIN-jsx >>', { res })
+            // console.log('RESponse from LOGIN-jsx >>', { res })
             localStorage.setItem('token', res.token);
-            console.log('SetToken from login-jsx >>', res.token)
+            // console.log('SetToken from login-jsx >>', res.token)
             navigate('/')
         } catch (error) {
 

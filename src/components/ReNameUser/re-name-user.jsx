@@ -10,38 +10,31 @@ import { VALIDATE_CONFIG } from "../../utils/contants"
 
 
 export const ReNameUser = () => {
-    // const location = useLocation();
-    // const initialPath = location.state?.initialPath;
 
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" })
     const navigate = useNavigate()
 
-    // const handleClickReNameButton = (e) => {
-    //     e.preventDefault();
-    //     navigate('/', { replace: true, state: { backgroundLocation: location, initialPath } });
-    // }
-    const { user: currentUser } = useContext(UserContext);
-    console.log('from re-name-jsx >>>>>>', currentUser)
-
+    const { user: currentUser, setCurrentUser } = useContext(UserContext);
+    // console.log('from re-name-jsx >>>>>>', currentUser)
 
     const sendChangeName = async (data) => {
-
-        console.log('send data from re-name-user-jsx', data);
+        // console.log('send data from re-name-user-jsx', data);
 
         try {
-            await api.changeUserName(data);
+            const responseData = await api.changeUserName(data);
 
-
-            console.log('data from TRY re-name-user-jsx >>>>', data)
-
+            setCurrentUser({
+                ...currentUser,
+                name: responseData.name,
+                about: responseData.about,
+            })
+            // console.log('responseData from TRY re-name-user-jsx >>>>', responseData)
             navigate('/')
 
         } catch (error) {
 
             alert(error)
-
         }
-
     }
 
     const newNameRegister = register('name', {

@@ -113,7 +113,7 @@ class Api {
             body: JSON.stringify(data),
 
         }).then((res) => {
-            console.log('res from api change name >>>', res)
+            // console.log('res from api change name >>>', res)
             return onResponse(res)
         })
     }

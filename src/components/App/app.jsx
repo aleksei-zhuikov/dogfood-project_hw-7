@@ -138,7 +138,7 @@ function App() {
   }, [localStorage.getItem('token')])
 
   return (
-    <UserContext.Provider value={{ user: currentUser, isLoading }}>
+    <UserContext.Provider value={{ user: currentUser, isLoading, setCurrentUser }}>
       {/* {console.log('currentUser from app-jx>>', { currentUser })} */}
       <CardContext.Provider value={{ cards, favorites, currentSort, handleLike: handleProductLike, onSortData: sortedData, setCurrentSort }}>
         <Header>
